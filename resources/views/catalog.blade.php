@@ -4,12 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Hackathon 8</title>
+    <title>View Consultant</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="{{asset('css/index.css')}}">
-    @livewireStyles
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 </head>
 <body>
+
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
             <a class="navbar-brand text-white" href="{{route('welcome')}}">StockPoint</a>
@@ -26,24 +27,26 @@
                     </li>
                 </ul>
                 <div class="d-flex">
-                    {{-- <a href="{{ route('logout') }}" class="btn btn-outline-danger">Logout</a> --}}
-                    <a href="{{route('login')}}" class="btn btn-success">Login</a>
-                    {{-- <a href="{{route('register')}}" class="btn btn-success">Register</a> --}}
+                    <a href="{{ route('logout') }}" class="btn btn-outline-danger">Logout</a>
                 </div>
             </div>
         </div>
     </nav>
 
-    <h1 class="text-center mt-3">StockPoint</h1>
-    <h3 class="text-center mt-3">Every things you seek is already here</h3>
+    {{-- @if (session()->has('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
 
-    <div class="text-center mt-5">
-        <a href="{{route('catalog')}}" class="btn btn-primary">Check our catalog</a>
-    </div>
+    @if (session()->has('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif --}}
 
-    @livewire('contact-form')
+    <h1 class="text-center mt-3">Our Catalogs</h1>
 
-    @livewireScripts
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 </html>

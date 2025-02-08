@@ -1,7 +1,7 @@
-<div class="container mt-5 p-4 bg-white shadow rounded">
+<div class="container mt-5 p-4 bg-black shadow rounded">
     <div class="row">
         <div class="col-12">
-            @if (session()->has('success'))
+            {{-- @if (session()->has('success'))
                 <div class="alert alert-success">
                     {{ session('success') }}
                 </div>
@@ -11,10 +11,10 @@
                 <div class="alert alert-danger">
                     {{ session('error') }}
                 </div>
-            @endif
+            @endif --}}
 
             <h1 class="text-center mb-4">Contact Us</h1>
-            <p class="text-center text-muted mb-4">Please fill out the form below to get in touch</p>
+            <p class="text-center mb-4">Please fill out the form below to get in touch</p>
 
             <form wire:submit="send" method="POST">
                 <div class="mb-3">
