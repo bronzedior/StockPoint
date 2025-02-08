@@ -22,4 +22,4 @@ Route::post('/login',[AuthController::class, 'Login'])->name('loginSubmit');
 Route::get('/logout', [AuthController::class, 'Logout'])->name('logout');
 
 // Catalog
-Route::get('/catalog', [CatalogController::class, 'ShowCatalogForm'])->name('catalog');
+Route::get('/catalog', [CatalogController::class, 'ShowCatalogForm'])->name('catalog')->middleware(['isLogin']);
