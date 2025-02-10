@@ -22,7 +22,7 @@
                         <a href="{{route('welcome')}}" class="nav-link active text-white" aria-current="page" href="#">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{route('catalog')}}" class="nav-link text-white" href="#">Catalog</a>
+                        <a href="{{ auth()->check() && auth()->user()->role === 'admin' ? route('admin') : route('catalog') }}" class="nav-link text-white" href="#">Catalog</a>
                     </li>
                 </ul>
                 <div class="d-flex">
@@ -38,7 +38,7 @@
     <h3 class="text-center mt-3">Every things you seek is already here</h3>
 
     <div class="text-center mt-5">
-        <a href="{{route('catalog')}}" class="btn btn-primary">Check our catalog</a>
+        <a href="{{ auth()->check() && auth()->user()->role === 'admin' ? route('admin') : route('catalog') }}" class="btn btn-primary">Check our catalog</a>
     </div>
 
     @livewire('contact-form')

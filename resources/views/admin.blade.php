@@ -10,21 +10,6 @@
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 </head>
 <body>
-    {{-- @if(auth()->check())
-        @if(auth()->user()->role === 'admin')
-            <li class="nav-item">
-                <a href="{{ route('admin') }}" class="nav-link text-white">Admin Dashboard</a>
-            </li>
-        @else
-            <li class="nav-item">
-                <a href="{{ route('catalog') }}" class="nav-link text-white">Catalog</a>
-            </li>
-        @endif
-    @else
-        <li class="nav-item">
-            <a href="{{ route('catalog') }}" class="nav-link text-white">Catalog</a>
-        </li>
-    @endif --}}
 
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
@@ -60,7 +45,7 @@
         </div>
     @endif --}}
 
-    <h1 class="text-center mt-3">Our Catalogs</h1>
+    <h1 class="text-center mt-3">Admin Catalogs</h1>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>

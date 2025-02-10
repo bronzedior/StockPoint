@@ -55,7 +55,12 @@ class AuthController extends Controller
             if(Auth::attempt(credentials: $request->only('email', 'password'))){
                 $request->session()->regenerate();
 
-                return redirect()->route('catalog')->with('success', 'successfully login');
+                if(Auth::user()->role === 'admin'){
+                    return redirect()->route('admin')->with('success', 'authenticated');
+                }else{
+                    return redirect()->route('catalog')->with('success', 'successfully login');
+                }
+
             }else{
                 // dump('login failed credentials is not found please try again');
                 return back()->with('error','Credentials not found');

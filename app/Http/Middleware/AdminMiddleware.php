@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Symfony\Component\HttpFoundation\Response;
 
-class AuthenticationMiddleware
+class AdminMiddleware
 {
     /**
      * Handle an incoming request.
@@ -17,18 +17,10 @@ class AuthenticationMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        // dd('codenya udh sampe middleware');
-        if(!Auth::check()){
-            return redirect(route('login'));
+        if (Auth::check() && Auth::user()->role === 'admin') {
+            return $next($request);
         }
 
-        // if (Auth::user()->role === 'admin') {
-        //     return redirect()->route('admin'); // Redirect admin to admin dashboard
-        // }
-
-        // Debugging: Log to ensure middleware is hit
-        Log::info('Middleware executed: User is logged in');
-
-        return $next($request);
+        return redirect()->route('catalog');
     }
 }

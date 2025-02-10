@@ -36,6 +36,11 @@ return new class extends Migration
             $table->longText('payload');
             $table->integer('last_activity')->index();
         });
+
+        // Migration for adding role to users table
+        Schema::table('users', function (Blueprint $table) {
+            $table->string('role')->default('user'); // 'user' for regular users, 'admin' for admins
+        });
     }
 
     /**

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CatalogController;
 use Illuminate\Support\Facades\Route;
@@ -23,3 +24,8 @@ Route::get('/logout', [AuthController::class, 'Logout'])->name('logout');
 
 // Catalog
 Route::get('/catalog', [CatalogController::class, 'ShowCatalogForm'])->name('catalog')->middleware(['isLogin']);
+
+// Admin
+Route::get('/admin', [AdminController::class, 'ShowAdminDashboard'])
+    ->name('admin')
+    ->middleware(['isLogin', 'admin']);
