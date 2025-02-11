@@ -23,9 +23,16 @@ Route::post('/login',[AuthController::class, 'Login'])->name('loginSubmit');
 Route::get('/logout', [AuthController::class, 'Logout'])->name('logout');
 
 // Catalog
-Route::get('/catalog', [CatalogController::class, 'ShowCatalogForm'])->name('catalog')->middleware(['isLogin']);
+Route::get('/catalog', [CatalogController::class, 'showCatalogForm'])->name('catalog')->middleware(['isLogin']);
 
 // Admin
-Route::get('/admin', [AdminController::class, 'ShowAdminDashboard'])
-    ->name('admin')
-    ->middleware(['isLogin', 'admin']);
+Route::middleware(['isLogin', 'admin'])->group(function () {
+    Route::get('/admin', [AdminController::class, 'showAdminDashboard'])->name('admin');
+    Route::post('/admin/add', [CatalogController::class, 'store'])->name('store');
+    Route::get('/admin/insert', [CatalogController::class, 'addItem'])->name('addItem');
+    Route::put('/admin/update/{id}', [CatalogController::class, 'update'])->name('update');
+    Route::get('/admin/edit/{id}', [CatalogController::class, 'editItem'])->name('editItem');
+    Route::delete('/admin/delete/{id}', [CatalogController::class, 'deleteItem'])->name('deleteItem');
+});
+
+

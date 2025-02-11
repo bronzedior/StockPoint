@@ -22,6 +22,9 @@ class DatabaseSeeder extends Seeder
         //     'phone_number' => '081234567890',  // Add this
         // ]);
 
-        $this->call(AdminSeeder::class);
+        $this->call([
+            AdminSeeder::class,
+            CategorySeeder::class
+        ]);
     }
 }
