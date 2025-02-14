@@ -26,6 +26,7 @@
                     </li>
                 </ul>
                 <div class="d-flex">
+                    <a href="{{route('history')}}" class="btn btn-info me-2">Check Invoice History</a>
                     <a href="{{route('checkout')}}" class="btn btn-warning me-2">View Cart</a>
                     <a href="{{route('logout')}}" class="btn btn-outline-danger">Logout</a>
                 </div>

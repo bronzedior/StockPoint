@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CatalogController;
+use App\Http\Controllers\InvoiceController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -43,4 +44,11 @@ Route::middleware('isLogin')->group(function(){
     Route::post('/checkout', [CartController::class, 'submitCheckout'])->name('checkout.submit');
     Route::put('/cart/update/{id}', [CartController::class, 'update'])->name('cart.update');
     Route::delete('/cart/delete/{id}', [CartController::class, 'delete'])->name('cart.delete');
+});
+
+// Invoice
+Route::middleware('isLogin')->group(function(){
+    Route::get('/invoice', [InvoiceController::class, 'showInvoiceForm'])->name('invoiceForm');
+    Route::post('/invoice', [InvoiceController::class, 'storeInvoice'])->name('storeInvoice');
+    Route::get('/history', [InvoiceController::class, 'showHistory'])->name('history');
 });
