@@ -33,6 +33,16 @@
     <div class="d-flex justify-content-center align-items-center">
         <div class="form-container shadow card">
             <h1 class="text-center mb-4">Register</h1>
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul class="mb-0">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
             <form method="POST" action="{{ route('register') }}">
                 @csrf
                 <div class="mb-3">

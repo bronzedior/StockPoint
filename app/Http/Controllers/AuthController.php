@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
 {
@@ -28,16 +30,21 @@ class AuthController extends Controller
                     ]
                 ]
             );
+
             User::create([
                 'name'=>$request->name,
                 'email'=>$request->email,
                 'password'=>Hash::make($request->password),
                 'phone_number'=>$request->phone_number,
             ]);
+
             return redirect()->route('login')->with('success', 'successfully registered');
-        } catch(\Exception $e){
-            dump($e->getMessage());
+        } catch(ValidationException $e){
+            return back()->withErrors($e->errors())->withInput();
+            // dump($e->getMessage());
             // return back()->withErrors(provider: 'error', key: "error occured please check input");
+        } catch(Exception $e){
+            return back()->with('error', 'An unexpected error occurred. Please try again later.');
         }
     }
 
@@ -65,7 +72,7 @@ class AuthController extends Controller
                 // dump('login failed credentials is not found please try again');
                 return back()->with('error','Credentials not found');
             }
-        }catch(\Exception $e){
+        }catch(Exception $e){
                 dump($e->getMessage());
         }
     }
