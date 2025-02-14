@@ -12,4 +12,8 @@ class Invoice extends Model
     protected $casts = [
         'items' => 'array',
     ];
+
+    public function catalog(){
+        return $this->hasMany(Catalog::class);
+    }
 }

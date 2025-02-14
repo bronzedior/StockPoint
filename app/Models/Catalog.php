@@ -17,4 +17,8 @@ class Catalog extends Model
     public function category(){
         return $this->belongsTo(Category::class);
     }
+
+    public function invoice(){
+        return $this->belongsTo(Invoice::class);
+    }
 }
