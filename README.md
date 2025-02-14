@@ -85,6 +85,6 @@ composer install
 php artisan serve
 ```
 
-built-in admin account 
-email: admin@stockpoint.com
+built-in admin account<br /> 
+email: admin@stockpoint.com<br />
 password: password123
