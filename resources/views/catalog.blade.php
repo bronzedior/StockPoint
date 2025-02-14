@@ -26,13 +26,25 @@
                     </li>
                 </ul>
                 <div class="d-flex">
-                    <a href="{{ route('logout') }}" class="btn btn-outline-danger">Logout</a>
+                    <a href="{{route('checkout')}}" class="btn btn-warning me-2">View Cart</a>
+                    <a href="{{route('logout')}}" class="btn btn-outline-danger">Logout</a>
                 </div>
             </div>
         </div>
     </nav>
 
     <h1 class="text-center mt-3">Our Catalogs</h1>
+
+    {{-- @if(session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+    @if(session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif --}}
 
     <div class="container">
         <div class="row">
@@ -43,9 +55,35 @@
                     <div class="card-body">
                         <h5 class="card-title">Name: {{$catalog->name}}</h5>
                         <p class="card-text">Category: {{$catalog->category->name}}</p>
-                        <p class="card-text">Price: {{$catalog->price}}</p>
+                        <p class="card-text">Price: Rp{{number_format($catalog->price, 2)}}</p>
                         <p class="card-text">Quantity: {{$catalog->quantity}}</p>
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addToCartModal_{{$catalog->id}}">Add to Cart</button>
                     </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="addToCartModal_{{$catalog->id}}" tabindex="-1" aria-labelledby="addToCartModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <form action="{{route('cart.add')}}" method="POST">
+                        @csrf
+                        <div class="modal-content bg-dark text-white">
+                            <div class="modal-header border-bottom border-secondary">
+                                <h5 class="modal-title" id="addToCartModalLabel">Add {{$catalog->name}} to Cart</h5>
+                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <input type="hidden" name="catalog_id" value="{{$catalog->id}}">
+                                <div class="mb-3">
+                                    <label for="quantity_{{$catalog->id}}" class="form-label text-white">Enter Quantity</label>
+                                    <input type="number" name="quantity" id="quantity_{{$catalog->id}}" class="form-control bg-secondary text-white" min="1" max="{{$catalog->quantity}}" required>
+                                </div>
+                            </div>
+                            <div class="modal-footer border-top border-secondary">
+                                <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">Cancel</button>
+                                <button type="submit" class="btn btn-success">Add to Cart</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
             @endforeach

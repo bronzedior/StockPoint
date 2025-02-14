@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CatalogController;
 use Illuminate\Support\Facades\Route;
 
@@ -35,4 +36,11 @@ Route::middleware(['isLogin', 'admin'])->group(function () {
     Route::delete('/admin/delete/{id}', [CatalogController::class, 'deleteItem'])->name('deleteItem');
 });
 
-
+// Checkout
+Route::middleware('isLogin')->group(function(){
+    Route::post('/cart/add', [CartController::class, 'addToCart'])->name('cart.add');
+    Route::get('/checkout', [CartController::class, 'showCheckout'])->name('checkout');
+    Route::post('/checkout', [CartController::class, 'submitCheckout'])->name('checkout.submit');
+    Route::put('/cart/update/{id}', [CartController::class, 'update'])->name('cart.update');
+    Route::delete('/cart/delete/{id}', [CartController::class, 'delete'])->name('cart.delete');
+});
